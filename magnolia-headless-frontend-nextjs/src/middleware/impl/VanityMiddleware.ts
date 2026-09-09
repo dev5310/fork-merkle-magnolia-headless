@@ -75,6 +75,9 @@ export class VanityMiddleware extends AbstractMiddleware {
 			headers: headers,
 		};
 		const destination = this.getDestination(req, vanity);
+		if (destination.pathname === req.nextUrl.pathname) {
+			return undefined;
+		}
 		switch (vanity.type) {
 			case RedirectType.FORWARD:
 				/*
